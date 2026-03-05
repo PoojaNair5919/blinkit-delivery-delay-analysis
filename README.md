@@ -4,6 +4,7 @@
 ![Dashboard Preview](dashboards/Dashboard_preview.gif)
 
 This project demonstrates **hypothesis-driven analytics, semantic data modeling, and KPI-driven dashboard design using Power BI** to investigate operational risk hidden behind stable financial metrics.
+
 ---
 
 # Project Overview
