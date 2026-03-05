@@ -3,6 +3,7 @@
 
 ![Dashboard Preview](dashboards/Dashboard_preview.gif)
 
+This project demonstrates **hypothesis-driven analytics, semantic data modeling, and KPI-driven dashboard design using Power BI** to investigate operational risk hidden behind stable financial metrics.
 ---
 
 # Project Overview
@@ -163,3 +164,22 @@ The full analytical narrative and investigation are documented in the Medium art
 (https://medium.com/@poojanair5919/30-of-orders-are-delayed-why-isnt-revenue-falling-b2c29bbebcda)
 
 ---
+
+# Explore the Project
+
+If you want to explore the project in more detail:
+
+- Read the full analytical investigation on Medium:  
+  **30% of Orders Are Delayed. Why Isn't Revenue Falling?**
+
+- Open the Power BI report file located in the `pbix` folder to explore the dashboards and semantic model.
+
+- Review the semantic model diagram in the `semantic-model` folder to understand how the star schema was designed.
+
+---
+
+# Project Objective
+
+The goal of this project was to demonstrate how analytical investigation can reveal operational risks that may not yet appear in financial metrics.
+
+By combining semantic data modeling, KPI-driven dashboards, and structured hypothesis testing, the analysis highlights how BI tools can surface early warning signals in operational data.
