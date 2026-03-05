@@ -130,6 +130,142 @@ All key metrics (revenue, AOV, delay percentages, concentration metrics) were im
 
 ---
 
+# Example KPI Measures (DAX)
+
+To ensure consistency across dashboards, all business metrics were implemented as reusable **DAX measures** in the semantic model rather than calculated directly within visuals.
+
+Below are examples of the key measures used in the analysis.
+
+---
+
+## Total Revenue
+
+```DAX
+Total Revenue =
+SUM(FactOrderItems[line_revenue])
+```
+
+Calculates total revenue generated across all order items.
+
+---
+
+## Total Orders
+
+```DAX
+Total Orders =
+DISTINCTCOUNT(FactOrderItems[order_id])
+```
+
+Counts the number of unique orders placed.
+
+---
+
+## Average Order Value (AOV)
+
+```DAX
+Average Order Value =
+DIVIDE(
+    [Total Revenue],
+    [Total Orders]
+)
+```
+
+Measures the average revenue generated per order.
+
+---
+
+## Orders Delayed
+
+```DAX
+Orders Delayed =
+CALCULATE(
+    [Total Orders],
+    FactOrderItems[Delay Bucket] <> "On Time / Early"
+)
+```
+
+Counts the number of orders delivered late.
+
+---
+
+## Percentage of Orders Delayed
+
+```DAX
+% Orders Delayed =
+DIVIDE(
+    [Orders Delayed],
+    [Total Orders]
+)
+```
+
+Calculates the proportion of orders that were delivered late.
+
+---
+
+## Revenue from Delayed Orders
+
+```DAX
+Revenue (Delayed Orders) =
+CALCULATE(
+    [Total Revenue],
+    FactOrderItems[Delay Bucket] <> "On Time / Early"
+)
+```
+
+Measures revenue generated from delayed orders.
+
+---
+
+## Percentage Revenue from Delayed Orders
+
+```DAX
+% Revenue from Delayed Orders =
+DIVIDE(
+    [Revenue (Delayed Orders)],
+    [Total Revenue]
+)
+```
+
+Shows how much of total revenue comes from delayed orders.
+
+---
+
+## Top 10 Products Revenue
+
+```DAX
+Revenue Top 10 Products :=
+VAR Top10Products =
+    TOPN(
+        10,
+        ALL(DimProduct[product_name]),
+        [Total Revenue],
+        DESC
+    )
+RETURN
+    CALCULATE(
+        [Total Revenue],
+        KEEPFILTERS(Top10Products)
+    )
+```
+
+Calculates revenue contribution from the top 10 products.
+
+---
+
+## Percentage Revenue from Top 10 Products
+
+```DAX
+% Revenue Top 10 Products =
+DIVIDE(
+    [Revenue Top 10 Products],
+    [Total Revenue]
+)
+```
+
+Measures revenue concentration among the top products.
+
+---
+
 # Tools Used
 
 - Power BI  
@@ -152,7 +288,7 @@ The dataset contains:
 - order quantities and revenue  
 
 Dataset source:  
-(https://www.kaggle.com/datasets/akxiit/blinkit-sales-dataset)
+https://www.kaggle.com/datasets/akxiit/blinkit-sales-dataset
 
 ---
 
@@ -162,7 +298,7 @@ The full analytical narrative and investigation are documented in the Medium art
 
 **30% of Orders Are Delayed. Why Isn't Revenue Falling?**
 
-(https://medium.com/@poojanair5919/30-of-orders-are-delayed-why-isnt-revenue-falling-b2c29bbebcda)
+https://medium.com/@poojanair5919/30-of-orders-are-delayed-why-isnt-revenue-falling-b2c29bbebcda
 
 ---
 
@@ -170,12 +306,9 @@ The full analytical narrative and investigation are documented in the Medium art
 
 If you want to explore the project in more detail:
 
-- Read the full analytical investigation on Medium:  
-  **30% of Orders Are Delayed. Why Isn't Revenue Falling?**
-
-- Open the Power BI report file located in the `pbix` folder to explore the dashboards and semantic model.
-
-- Review the semantic model diagram in the `semantic-model` folder to understand how the star schema was designed.
+- Read the full analytical investigation on Medium  
+- Open the Power BI report file located in the `pbix` folder to explore the dashboards and semantic model  
+- Review the semantic model diagram in the `semantic-model` folder to understand how the star schema was designed  
 
 ---
 
